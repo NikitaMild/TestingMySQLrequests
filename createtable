@@ -1,0 +1,62 @@
+---------------------------------------------------------------------------------------------------------
+WORKLIST:
+
+CREATE TABLE worklist (number INT(128) NOT NULL,
+                       scheme VARCHAR(50) NOT NULL,
+                       `request type` VARCHAR(50) NOT NULL,
+                       level TINYINT, task TEXT,
+                       `correct request` TEXT,
+                       `table name` VARCHAR(60),
+                       PRIMARY KEY(number,scheme,`request type`))
+                       ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+
+CREATE TABLE reqtype (`request type` VARCHAR(50) NOT NULL,
+                      type TEXT,
+                      PRIMARY KEY(`request type`))
+                      ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+CREATE TABLE lvl (level TINYINT,
+                  code VARCHAR(50),
+                  definition TEXT,
+                  PRIMARY KEY(level))
+                  ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+
+CREATE TABLE `schema` (scheme VARCHAR(50),
+                      definition TEXT,
+                      PRIMARY KEY(scheme))
+                      ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+ALTER TABLE `worklist`
+  ADD CONSTRAINT `fk_worklist_reqtype` FOREIGN KEY (`request type`) REFERENCES `reqtype` (`request type`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE `worklist`
+  ADD CONSTRAINT `fk_worklist_lvl` FOREIGN KEY (`level`) REFERENCES `lvl` (`level`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE `worklist`
+  ADD CONSTRAINT `fk_worklist_schema` FOREIGN KEY (`scheme`) REFERENCES `schema` (`scheme`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+----------------------------------------------------------------------------------------------------
+DATABASE, WHEN I TESTING SQL requests
+
+SWEETS:
+
+CREATE TABLE marmalade (weight FLOAT,
+                        price FLOAT,
+                        taste VARCHAR(60) NOT NULL,
+                        PRIMARY KEY(taste, price))
+                        ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+CREATE TABLE chocolate (price  FLOAT,
+                        size VARCHAR(50) NOT NULL,
+                        country VARCHAR(30) NOT NULL,
+                        kind VARCHAR(60) NOT NULL,
+                        PRIMARY KEY(size,country, kind))
+                        ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+CREATE TABLE coffee (volume FLOAT,
+                    `type` VARCHAR(60) NOT NULL,
+                     price FLOAT,
+                     PRIMARY KEY(`type`,price))
+                     ENGINE=InnoDB DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
