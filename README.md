@@ -1,16 +1,14 @@
 # TestingMySQLrequests
 
-This is my coursework which call "testing for correctness SQL requests"
+Курсовая работа по теме: "«Разработка системы тестирования обучающихся для проверки правильности выполнения SQL-запросов типа SELECT»"
+Проект написан на языке python v. 2.7.12 
+В качестве РБД была взята MySQL 
 
-I writing this project on language python v. 2.7.12 and 
-I use MySQL is an open-source relational database management system (RDBMS).
+main.py    <-- Пользовательский интерфейс (консольный режим)
 
-main.py    <-- This is user interface (console mode)
+CreateDatabase.py, INsertinTables.py, adduser.py <-- Интерфейсы администратора
 
-CreateDatabase.py, INsertinTables.py, adduser.py <-- This is admin interface
+kerner.py <-- модуль, в котором реализована рабочая версия тестировки запроса на правильность 
 
-kerner.py <-- query testing engine
+createtable <-- скрипт, для создания схем, которые используются в проекте
 
-createtable <-- This is the file where the table creation scripts are stored
-
-Run Program: python main.py or another files by this list
